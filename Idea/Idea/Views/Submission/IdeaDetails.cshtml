@@ -1,0 +1,84 @@
+﻿@model Idea.Models.NIdea
+
+@{
+    ViewData["Title"] = "Details";
+
+    var Comments = (List<Comment>)ViewData["Comments"];
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Submission
+            <small> > &nbsp;NIdea</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Submission</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-solid" style="box-shadow: none;">
+                    <div class="box-header with-border" style="text-align: left;">
+                        <i class="fa fa-text-width" style="margin-top: 20px"></i>
+                        <h3 class="box-title" style="text-align: center">
+                            NIdea
+                        </h3>
+                        <div style="float: right">
+                            <a class="btn btn-app" asp-action="ViewIdeas" asp-route-submissionid="@Model.SubmissionId">
+                                <i class="fa fa-angle-left"></i> Back to List
+                            </a>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <dl class="dl-horizontal">
+                            <dt>@Html.DisplayNameFor(model => model.Title)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Title)</dd>
+
+                            <dt>@Html.DisplayNameFor(model => model.Brief)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Brief)</dd>
+
+                            <dt>@Html.DisplayNameFor(model => model.Content)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Content)</dd>
+
+                            <dt>@Html.DisplayNameFor(model => model.FilePath)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.FilePath)</dd>
+
+                            <dt>@Html.DisplayNameFor(model => model.View)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.View)</dd>
+
+                            <dt>@Html.DisplayNameFor(model => model.Submission)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Submission.Id)</dd>
+
+                            <dt>@Html.DisplayNameFor(model => model.Category)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Category.Id)</dd>
+
+                            <dt>@Html.DisplayNameFor(model => model.UserId)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.UserId)</dd>
+                        </dl>
+
+                        @if (Model.Submission.Deadline_2 >= DateTime.Now)
+                        {
+                            <form class="input-group mb-3" asp-action="Comment" style="width: 100%;">
+                                <input type="hidden" name="IdeaId" value="@Model.Id" />
+                                <input type="text" class="form-control" placeholder="Comment" name="Content" style="width: 94%;">
+                                <button class="btn btn-outline-success" type="submit" style="width: 5%; float: right;">Comment</button>
+                            </form>
+                        }
+
+                        @foreach (var comment in Comments)
+                        {
+                            <hr />
+                            <div>(@comment.Created_Date) - @comment.Content</div>
+                        }
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- ./col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

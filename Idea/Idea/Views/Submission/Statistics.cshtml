@@ -1,0 +1,32 @@
+﻿@{
+    var Departments = (List<Department>)ViewData["Departments"];
+    var Ideas = (List<NIdea>)ViewData["Ideas"];
+}
+
+@if (Departments != null && Departments.Any())
+{
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                @foreach (var department in Departments)
+                                {
+                                    <tr>
+                                        <th>@department.Name</th>
+                                        <td style="vertical-align: middle;">
+                                            @Ideas.Where(i => i.User.Department.Id == department.Id).Count()
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+}

@@ -1,0 +1,55 @@
+@model Idea.Models.Submission
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Submission
+            <small> > &nbsp;@Html.DisplayFor(model => model.Name)</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Submission</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-solid" style="box-shadow: none;">
+                    <div class="box-header with-border" style="text-align: left;">
+                        <i class="fa fa-text-width" style="margin-top: 20px"></i>
+                        <h3 class="box-title" style="text-align: center">
+                            Details
+                        </h3>
+                        <div style="float: right">
+                            <a class="btn btn-app" asp-action="Edit" asp-route-id="@Model.Id">
+                                <i class="fa fa-edit"></i> Edit
+                            </a>
+                            <a class="btn btn-app" asp-action="Index">
+                                <i class="fa fa-angle-left"></i> Back to List
+                            </a>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <dl class="dl-horizontal">
+                            <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Name)</dd>
+
+                            <dt>@Html.DisplayNameFor(model => model.Deadline_1)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Deadline_1)</dd>
+
+                            <dt>@Html.DisplayNameFor(model => model.Deadline_2)</dt>
+                            <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Deadline_2)</dd>
+                        </dl>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- ./col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

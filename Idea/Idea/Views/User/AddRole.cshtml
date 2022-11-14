@@ -1,0 +1,104 @@
+﻿@model Idea.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Assign Roles";
+
+    var currentRoles = (List<Microsoft.AspNetCore.Identity.IdentityRole>) ViewData["currentRoles"];
+    var remainingRoles = (List<Microsoft.AspNetCore.Identity.IdentityRole>) ViewData["remainingRoles"];
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            User
+            <small> > &nbsp;@Html.DisplayFor(model => model.UserName)</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">User</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-solid" style="box-shadow: none;">
+                    <div class="box-header with-border" style="text-align: left;">
+                        <i class="fa fa-text-width" style="margin-top: 20px"></i>
+                        <h3 class="box-title" style="text-align: center">
+                            Assign Roles
+                        </h3>
+                        <div style="float: right">
+                            <a class="btn btn-app" asp-action="Index">
+                                <i class="fa fa-angle-left"></i> Back to List
+                            </a>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body row">
+                        <div class="col-12 col-lg-6">
+                            <h5 style="text-align: center; margin-bottom: 20px; font-size: 15px; font-weight: bold;">
+                                Current Roles
+                            </h5>
+                            <hr style="border-top: 1px solid #999;" />
+                            <dl class="dl-horizontal">
+                                @if (currentRoles.Count() == 0)
+                                {
+                                    <dd style="margin-bottom: 15px;">There is no current role.</dd>
+                                }
+                                else
+                                {
+                                    foreach (var role in currentRoles)
+                                    {
+                                        <dt>
+                                            <form asp-action="DeleteRole">
+                                                <input type="hidden" asp-for="Id" name="userId" />
+                                                <input type="hidden" asp-for="@role.Id" name="roleId" />
+
+                                                <button type="submit" class="btn btn-app" style="border: 1px solid #999; height: 40px; padding: 2px 5px;"><i class="fa fa-minus"></i> Remove</button>
+                                            </form>
+                                        </dt>
+                                        <dd style="margin-bottom: 15px;">
+                                            <p style="margin-top: 8px">@role.Id</p>
+                                        </dd>
+                                    }
+                                }
+                            </dl>
+                        </div>
+
+                        <div class="col-12 col-lg-6">
+                            <h5 style="text-align: center; margin-bottom: 20px; font-size: 15px; font-weight: bold;">
+                                Remaining Roles
+                            </h5>
+                            <hr style="border-top: 1px solid #999;" />
+                            <dl class="dl-horizontal">
+                                @if (remainingRoles.Count() == 0)
+                                {
+                                    <dd style="margin-bottom: 15px;">There is no more role to add.</dd>
+                                }
+                                else
+                                {
+                                    foreach (var role in remainingRoles)
+                                    {
+                                        <dt>
+                                            <form asp-action="AddRole">
+                                                <input type="hidden" asp-for="Id" name="userId" />
+                                                <input type="hidden" asp-for="@role.Id" name="roleId" />
+
+                                                <button type="submit" class="btn btn-app" style="border: 1px solid #999; height: 40px; padding: 2px 5px;"><i class="fa fa-plus"></i> Add</button>
+                                            </form>
+                                        </dt>
+                                        <dd style="margin-bottom: 15px;">
+                                            <p style="margin-top: 8px">@role.Id</p>
+                                        </dd>
+                                    }
+                                }
+                            </dl>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- ./col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

@@ -1,0 +1,130 @@
+﻿@model Idea.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            User
+            <small> > &nbsp;@Html.DisplayFor(model => model.UserName)</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">User</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-solid" style="box-shadow: none;">
+                    <div class="box-header with-border" style="text-align: left;">
+                        <i class="fa fa-text-width" style="margin-top: 20px"></i>
+                        <h3 class="box-title" style="text-align: center">
+                            Details
+                        </h3>
+                        <div style="float: right">
+                            <a class="btn btn-app" asp-action="Edit" asp-route-id="@Model.Id">
+                                <i class="fa fa-edit"></i> Edit
+                            </a>
+                            <a class="btn btn-app" asp-action="Index">
+                                <i class="fa fa-angle-left"></i> Back to List
+                            </a>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body row">
+                        <div class="col-12 col-lg-6">
+                            <h5 style="text-align: center; margin-bottom: 20px; font-size: 15px; font-weight: bold;">
+                                Account Information
+                            </h5>
+                            <dl class="dl-horizontal">
+                                <dt>@Html.DisplayNameFor(model => model.UserName)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.UserName)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.NormalizedUserName)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.NormalizedUserName)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Email)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.NormalizedEmail)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.NormalizedEmail)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.EmailConfirmed)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.EmailConfirmed)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.PasswordHash)</dt>
+                                <dd style="margin-bottom: 15px; word-break: break-word;">@Html.DisplayFor(model => model.PasswordHash)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.SecurityStamp)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.SecurityStamp)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.ConcurrencyStamp)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.ConcurrencyStamp)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.PhoneNumber)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.PhoneNumber)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.PhoneNumberConfirmed)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.PhoneNumberConfirmed)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.TwoFactorEnabled)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.TwoFactorEnabled)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.LockoutEnd)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.LockoutEnd)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.LockoutEnabled)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.LockoutEnabled)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.AccessFailedCount)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.AccessFailedCount)</dd>
+                            </dl>
+                        </div>
+
+                        <div class="col-12 col-lg-6">
+                            <h5 style="text-align: center; margin-bottom: 20px; font-size: 15px; font-weight: bold;">
+                                Profile
+                            </h5>
+                            <dl class="dl-horizontal">
+                                <dt>@Html.DisplayNameFor(model => model.FirstName)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.FirstName)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.FirstName)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.LastName)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.SSN)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.SSN)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.PassportID)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.PassportID)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.Gender)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Gender)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.Birthday)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Birthday)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.AlternativeEmail)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.AlternativeEmail)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.AlternativePhone)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.AlternativePhone)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.Address)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Address)</dd>
+
+                                <dt>@Html.DisplayNameFor(model => model.Others)</dt>
+                                <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.Others)</dd>
+                            </dl>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- ./col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

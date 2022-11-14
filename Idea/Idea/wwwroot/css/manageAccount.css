@@ -1,0 +1,46 @@
+﻿.nav-pills {
+    flex-direction: column !important;
+    display: flex;
+}
+
+    .nav-pills > li > a:hover {
+        border: 1px solid #999;
+        border-radius: 3px;
+    }
+
+    .nav-pills > li > .active {
+        border: 1px solid #999;
+        border-radius: 3px;
+    }
+
+.skin-blue > .wrapper {
+    background: unset !important;
+}
+
+    .skin-blue > .wrapper > .main-header {
+        background: #222222;
+    }
+
+    .skin-blue > .wrapper > .main-sidebar {
+        background: #222222;
+    }
+
+    .skin-blue > .wrapper > h1 {
+        margin-left: 240px;
+    }
+
+    .skin-blue > .wrapper > div {
+        margin-left: 240px;
+    }
+
+.sidebar-collapse > .wrapper > h1 {
+    margin-left: 0px !important;
+}
+
+.sidebar-collapse > .wrapper > div {
+    margin-left: 0px !important;
+}
+
+.wrapper > div > div > div {
+    border-right: 1px solid #999;
+}

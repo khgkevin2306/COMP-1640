@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (!User.Identity.IsAuthenticated) 
+{
+	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+
+	<div class="d-flex flex-column justify-content-center w-100 h-100">
+		<div class="d-flex flex-column justify-content-center align-items-center">
+			<h1 class="fw-light text-white m-0" style="font-family: fantasy; font-size: 200px;">Idea</h1>
+			<div class="btn-group my-5">
+				<a class="btn btn-outline-light" aria-current="page" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-file-download me-2"></i> HOME</a>
+				<a class="btn btn-outline-light" asp-area="Identity" asp-page="/Account/Login">LOGIN <i class="fas fa-expand ms-2"></i></a>
+			</div>
+		</div>
+	</div>
+}

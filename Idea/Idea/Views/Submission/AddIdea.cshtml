@@ -1,0 +1,101 @@
+﻿@model Idea.Models.NIdea
+
+@{
+    ViewData["Title"] = "Add Idea";
+}
+
+<div class="content-wrapper">
+    <style>
+        .validation-summary-errors > ul {
+            list-style: none;
+            text-align: right;
+        }
+    </style>
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            NIdea
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Submission</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-solid" style="box-shadow: none;">
+                    <div class="box-header with-border" style="text-align: left">
+                        <i class="fa fa-text-width" style="margin-top: 20px"></i>
+                        <h3 class="box-title">
+                            Create
+                        </h3>
+                        <div style="float: right">
+                            <input id="submitAddIdea" type="submit" form="formAddIdea" value="Create" style="display: none" />
+                            <a class="btn btn-app" onclick="$('#submitAddIdea').trigger('click');">
+                                <i class="fa fa-save"></i> Save
+                            </a>
+                            <a class="btn btn-app" asp-action="ViewIdeas" asp-route-submissionid="@ViewBag.SubmissionId">
+                                <i class="fa fa-angle-left"></i> Back to List
+                            </a>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <form asp-action="AddIdea" id="formAddIdea" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="SubmissionId" class="form-control" value="@ViewBag.SubmissionId">
+                            <input type="hidden" asp-for="UserId" class="form-control" value="@ViewBag.UserId">
+                            <input type="hidden" asp-for="FilePath" value="" class="form-control" />
+                            <input type="hidden" asp-for="View" class="form-control" value="0" />
+
+                            <dl class="dl-horizontal">
+                                <dt style="margin-top: 5px;">@Html.DisplayNameFor(model => model.Title)</dt>
+                                <dd style="margin-bottom: 15px;">
+                                    <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </dd>
+
+                                <dt style="margin-top: 5px;">@Html.DisplayNameFor(model => model.Brief)</dt>
+                                <dd style="margin-bottom: 15px;">
+                                    <input asp-for="Brief" class="form-control" />
+                                    <span asp-validation-for="Brief" class="text-danger"></span>
+                                </dd>
+
+                                <dt style="margin-top: 5px;">@Html.DisplayNameFor(model => model.Content)</dt>
+                                <dd style="margin-bottom: 15px;">
+                                    <input asp-for="Content" class="form-control" />
+                                    <span asp-validation-for="Content" class="text-danger"></span>
+                                </dd>
+
+                                <dt style="margin-top: 5px;">File</dt>
+                                <dd style="margin-bottom: 15px;">
+                                    <input type="file" name="file" class="form-control" />
+                                </dd>
+
+                                <dt style="margin-top: 5px;">Term ABC...</dt>
+                                <dd style="margin-bottom: 15px;">
+                                    <input type="checkbox" name="isAcceptTerms" value="True" />
+                                </dd>
+
+                                <dt style="margin-top: 5px;">@Html.DisplayNameFor(model => model.CategoryId)</dt>
+                                <dd style="margin-bottom: 15px;">
+                                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                                </dd>
+                            </dl>
+                        </form>
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- ./col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

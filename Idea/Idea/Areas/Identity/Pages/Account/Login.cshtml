@@ -1,0 +1,95 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+<script src="~/js/login.js"></script>
+
+<div class="d-flex flex-column justify-content-center w-100 h-100">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div>
+            <div class="container">
+                <div class="left" style="z-index: 2">
+                    <div class="login">
+                        <a aria-current="page" asp-area="" asp-controller="Home" asp-action="Index" style="color: unset; text-decoration: unset;">Idea</a>
+                    </div>
+                    @{
+                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                        {
+                                    <div class="eula">Use a local account to log in</div>
+                        }
+                        else
+                        {
+                                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                        <div>
+                                            <p>
+                                                @foreach (var provider in Model.ExternalLogins)
+                                        {
+                                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                        }
+                                            </p>
+                                        </div>
+                                    </form>
+                        }
+                    }
+                    <div class="eula"><a id="forgot-password" asp-page="./ForgotPassword" style="color: #000; text-decoration: unset; font-style: italic;">Forgot your password?</a></div>
+                    <div class="eula"><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="color: #000; text-decoration: unset; font-style: italic;">Register as a new user</a></div>
+                    <div class="eula" style="margin-bottom: 40px;"><a id="resend-confirmation" asp-page="./ResendEmailConfirmation" style="color: #000; text-decoration: unset; font-style: italic;">Resend email confirmation</a></div>
+                </div>
+                <div class="right" style="height: 350px">
+                    <svg viewBox="0 0 320 300">
+                        <defs>
+                            <linearGradient inkscape:collect="always"
+                                            id="linearGradient"
+                                            x1="13"
+                                            y1="193.49992"
+                                            x2="307"
+                                            y2="193.49992"
+                                            gradientUnits="userSpaceOnUse">
+                                <stop style="stop-color:#ff00ff;"
+                                      offset="0"
+                                      id="stop876" />
+                                <stop style="stop-color:#ff0000;"
+                                      offset="1"
+                                      id="stop878" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <form id="account" method="post" class="form">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div>
+                            <label for="email" style="display: inline-block; float: left">Email</label>
+                            <span style="display: inline-block; float: right" asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" style="margin-bottom: 20px;" />
+
+                        <div>
+                            <label for="password" style="display: inline-block; float: left">Password</label>
+                            <span style="display: inline-block; float: right" asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" style="margin-bottom: 20px;" />
+
+                        <div>
+                            <div class="checkbox">
+                                <label asp-for="Input.RememberMe" class="form-label">
+                                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <input type="submit" id="submit" value="Login" style="color: white">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
